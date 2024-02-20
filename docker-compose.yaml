@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    volumes:
+      - serverdata:/app/serverdata
+    networks:
+      - app-network
+
+  client:
+    build: ./client
+    ports:
+      - "5001:5001"
+    volumes:
+      - clientdata:/app/clientdata
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  serverdata:
+  clientdata:
